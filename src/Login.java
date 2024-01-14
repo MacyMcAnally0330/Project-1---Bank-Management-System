@@ -99,7 +99,8 @@ public class Login extends JFrame implements ActionListener {
         } else if (e.getSource() == Login) { //perform an action if the Button name equal to condition
 
         } else if (e.getSource() == signUp) { //perform an action if the Button name equal to condition
-
+            setVisible(false); //When user clicked in the "Sign Up" button -> the current screen will become not visible
+            new SignUpOne().setVisible(true); //But the screen for SignUpOne will now be visible for user to input details;
         }
 
     }
