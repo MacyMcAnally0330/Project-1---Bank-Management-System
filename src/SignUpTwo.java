@@ -9,13 +9,13 @@ import java.util.Random;
     public class SignUpTwo extends JFrame implements ActionListener {
 //This class is for the user fill in additional details information for account creation
 
-        long random;
-        JTextField qualiTextField,addressTextField,cityTextField,stateTextField,pinTextField, categoryTextField;
+        JTextField panTextField,aNumTextField,pinTextField;
         JButton next;
-        JRadioButton male,female,other,married,single;
-        JDateChooser dateChooser;
-        SignUpTwo(){
-
+        JRadioButton yes,no,eYes,eNo;
+        JComboBox typeOfReligion,typeOfCategory,typeOfIncome,eduValue,occupationVal;
+        String formNo;
+        SignUpTwo(String formNo){
+            this.formNo = formNo;
             setLayout(null);
 
             setTitle("NEW ACCOUNT APPLICATION FORM - PAGE 2");
@@ -31,7 +31,7 @@ import java.util.Random;
             add(religion);
 
             String valReligion[] = {"Hindu", "Muslim", "Sikh", "Christian", "Other"};
-            JComboBox typeOfReligion = new JComboBox(valReligion);//Used JCombboBox to create the DropList
+            typeOfReligion = new JComboBox(valReligion);//Used JCombboBox to create the DropList
             typeOfReligion.setBounds(300,140,400,30);
             typeOfReligion.setBackground(Color.WHITE);
             add(typeOfReligion);
@@ -42,7 +42,7 @@ import java.util.Random;
             add(category);
 
             String valeCategory[] = {"General", "OBC", "SC", "ST", "Other"};
-            JComboBox typeOfCategory = new JComboBox(valeCategory);//Used JCombboBox to create the DropList
+            typeOfCategory = new JComboBox(valeCategory);//Used JCombboBox to create the DropList
             typeOfCategory.setBounds(300,190,400,30);
             typeOfCategory.setBackground(Color.WHITE);
             add(typeOfCategory);
@@ -53,7 +53,7 @@ import java.util.Random;
             add(income);
 
             String incomeCategory[] = {"Null", "< 50,000", "< 100,000", "< 200,000", "> 200,000"};
-            JComboBox typeOfIncome = new JComboBox(incomeCategory);//Used JCombboBox to create the DropList
+            typeOfIncome = new JComboBox(incomeCategory);//Used JCombboBox to create the DropList
             typeOfIncome.setBounds(300,240,400,30);
             typeOfIncome.setBackground(Color.WHITE);
             add(typeOfIncome);
@@ -64,7 +64,7 @@ import java.util.Random;
             add(education);
 
             String eduCategory[] = {"HighSchool","Some College","Associate Degree", "Bachelor Degree", "Graduate Degree", "Doctorate Degree", "Others"};
-            JComboBox eduValue = new JComboBox(eduCategory);//Used JCombboBox to create the DropList
+            eduValue = new JComboBox(eduCategory);//Used JCombboBox to create the DropList
             eduValue.setBounds(300,315,400,30);
             eduValue.setBackground(Color.WHITE);
             add(eduValue);
@@ -79,45 +79,69 @@ import java.util.Random;
             occup.setBounds(100,390,200,30);
             add(occup);
 
+            String occupVal[] = {"Salaried","Self Employed","Business", "Student", "Retired","Others"};
+            occupationVal = new JComboBox(occupVal);//Used JCombboBox to create the DropList
+            occupationVal.setBounds(300,390,400,30);
+            occupationVal.setBackground(Color.WHITE);
+            add(occupationVal);
+
             JLabel panNum = new JLabel("Pan Number:");//details info configuration like sizes position and Font
             panNum.setFont(new Font("Raleway", Font.BOLD,20));
             panNum.setBounds(100,440,200,30);
             add(panNum);
 
-            addressTextField = new JTextField(); //create a Text field that user can input data
-            addressTextField.setFont(new Font("Raleway", Font.BOLD,14));
-            addressTextField.setBounds(300,440,400,30);
-            add(addressTextField);
+            panTextField = new JTextField(); //create a Text field that user can input data
+            panTextField.setFont(new Font("Raleway", Font.BOLD,14));
+            panTextField.setBounds(300,440,400,30);
+            add(panTextField);
 
             JLabel aNum = new JLabel("Aadhar Number:");//details info configuration like sizes position and Font
             aNum.setFont(new Font("Raleway", Font.BOLD,20));
             aNum.setBounds(100,490,200,30);
             add(aNum);
 
-            cityTextField = new JTextField(); //create a Text field that user can input data
-            cityTextField.setFont(new Font("Raleway", Font.BOLD,14));
-            cityTextField.setBounds(300,490,400,30);
-            add(cityTextField);
+            aNumTextField = new JTextField(); //create a Text field that user can input data
+            aNumTextField.setFont(new Font("Raleway", Font.BOLD,14));
+            aNumTextField.setBounds(300,490,400,30);
+            add(aNumTextField);
 
             JLabel senCit = new JLabel("Senior Citizen:");//details info configuration like sizes position and Font
             senCit.setFont(new Font("Raleway", Font.BOLD,20));
             senCit.setBounds(100,540,200,30);
             add(senCit);
 
-            stateTextField = new JTextField(); //create a Text field that user can input data
-            stateTextField.setFont(new Font("Raleway", Font.BOLD,14));
-            stateTextField.setBounds(300,540,400,30);
-            add(stateTextField);
+            yes = new JRadioButton("Yes"); //Button for Martial -> Married
+            yes.setBounds(300,540,100,30);
+            yes.setBackground(Color.WHITE);
+            add(yes);
+
+            no = new JRadioButton("No"); //Button for Martial -> Married
+            no.setBounds(450,540,100,30);
+            no.setBackground(Color.WHITE);
+            add(no);
+
+            ButtonGroup sCitizenGroup = new ButtonGroup(); //Limit user to pick one or the other for gender By using thr Button Group
+            sCitizenGroup.add(yes);
+            sCitizenGroup.add(no);
 
             JLabel exAcct = new JLabel("Existing Account:");//details info configuration like sizes position and Font
             exAcct.setFont(new Font("Raleway", Font.BOLD,20));
             exAcct.setBounds(100,590,200,30);
             add(exAcct);
 
-            pinTextField = new JTextField(); //create a Text field that user can input data
-            pinTextField.setFont(new Font("Raleway", Font.BOLD,14));
-            pinTextField.setBounds(300,590,400,30);
-            add(pinTextField);
+            eYes = new JRadioButton("Yes"); //Button for Martial -> Married
+            eYes.setBounds(300,590,100,30);
+            eYes.setBackground(Color.WHITE);
+            add(eYes);
+
+            eNo = new JRadioButton("No"); //Button for Martial -> Married
+            eNo.setBounds(450,590,100,30);
+            eNo.setBackground(Color.WHITE);
+            add(eNo);
+
+            ButtonGroup sExAcct = new ButtonGroup(); //Limit user to pick one or the other for gender By using thr Button Group
+            sExAcct.add(eNo);
+            sExAcct.add(eYes);
 
             getContentPane().setBackground(Color.WHITE);
 
@@ -134,54 +158,43 @@ import java.util.Random;
             setVisible(true);
         }
 
-        /*public void actionPerformed(ActionEvent ae){ //this function create what will happen when user click on the "next" button
-            String formNo = "" + random;
-            String name = nameTextField.getText();
-            String fname = fnameTextField.getText();
-            String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
-            String gender = null;
-            if (male.isSelected()) {
-                gender = "Male";
-            }else if (female.isSelected()){
-                gender = "Female";
+        public void actionPerformed(ActionEvent ae){ //this function create what will happen when user click on the "next" button
+            String sReligion = (String) typeOfReligion.getSelectedItem();
+            String sCategory = (String) typeOfCategory.getSelectedItem();
+            String sIncome = (String)  typeOfIncome.getSelectedItem();
+            String sEducation = (String) eduValue.getSelectedItem();
+            String sOccupation = (String) occupationVal.getSelectedItem();
+            String sSeniorCitizen = null;
+            if (no.isSelected()) {
+                sSeniorCitizen = "No";
+            }else if (yes.isSelected()){
+                sSeniorCitizen = "Yes";
             }
-            String email = emailTextField.getText();
-            String marital = null;
-            if (single.isSelected()){
-                marital = "Single";
-            }else if (married.isSelected()) {
-                marital = "Married";
-            }else if (other.isSelected()){
-                marital = "Other";
+            String sExistingAccount = null;
+            if (eYes.isSelected()){
+                sExistingAccount = "Yes";
+            }else if (eNo.isSelected()) {
+                sExistingAccount = "No";
             }
-            String address = addressTextField.getText();
-            String city = cityTextField.getText();
-            String state = stateTextField.getText();
-            String pin = pinTextField.getText();
+            String sPanNumber = panTextField.getText();
+            String sANum = aNumTextField.getText();
 
             //Validation check:
             try{
-                if (name.equals("")){ //If the name field is empty -> an alert will pop up to remind user
-                    JOptionPane.showMessageDialog(null,"Name is Required!");
-                }else {
                     Conn c = new Conn();
-                    String query = "insert into signup values('"+formNo+"','"+name+"','"+fname+"','"+dob+"', '"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+state+"','"+pin+"')";
+                    String query = "insert into signuptwo values('"+formNo+"','"+sReligion+"','"+sCategory+"','"+sIncome+"', '"+sEducation+"','"+sOccupation+"','"+sSeniorCitizen+"','"+sPanNumber+"','"+sANum+"','"+sExistingAccount+"')";
                     c.s.executeUpdate(query);
-                }
 
+                    //SignUp3 Object
             }catch (Exception e){
                 System.out.println(e);
             }
 
-        }*/
+        }
         public static void main(String args[]) {
-            new SignUpTwo();
+            new SignUpTwo("");
         }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
     }
 
 
