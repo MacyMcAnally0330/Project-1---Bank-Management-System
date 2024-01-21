@@ -186,6 +186,9 @@ import java.util.Random;
                     c.s.executeUpdate(query);
 
                     //SignUp3 Object
+                    setVisible(false);
+                    new SignUpThree(formNo).setVisible(true);
+
             }catch (Exception e){
                 System.out.println(e);
             }
