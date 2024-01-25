@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -88,17 +89,31 @@ public class Login extends JFrame implements ActionListener {
   }
 
     @Override  //This method is needed for the ActionListener implementation
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
 
       //create the action function in here
-        if (e.getSource() == clear) { //perform an action if the Button name equal to condition
+        if (ae.getSource() == clear) { //perform an action if the Button name equal to condition
 
             cardTextField.setText(""); //reset the area to empty string
             pinTextField.setText(""); //reset the area to empty string
 
-        } else if (e.getSource() == Login) { //perform an action if the Button name equal to condition
-
-        } else if (e.getSource() == signUp) { //perform an action if the Button name equal to condition
+        } else if (ae.getSource() == Login) { //perform an action if the Button name equal to condition
+            Conn conn = new Conn();
+            String cardNumber = cardTextField.getText();
+            String pinNumber = pinTextField.getText();
+            String query = "select * from login where cardnumber = '"+cardNumber+"' and pinnumber = '"+pinNumber+"'";
+            try{
+                ResultSet rs = conn.s.executeQuery(query);
+                if (rs.next()){
+                    setVisible(false);
+                    new Transaction(pinNumber).setVisible(true);
+                }else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Card Number or Pin!");
+                }
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        } else if (ae.getSource() == signUp) { //perform an action if the Button name equal to condition
             setVisible(false); //When user clicked in the "Sign Up" button -> the current screen will become not visible
             new SignUpOne().setVisible(true); //But the screen for SignUpOne will now be visible for user to input details;
         }
