@@ -207,13 +207,17 @@ public class SignUpThree extends JFrame implements ActionListener {
 
 
                     JOptionPane.showMessageDialog(null, "Card Number: " + cardNumber + "\n Pin: " + pinNumber);
+
+                    setVisible(false);
+                    new Deposit(pinNumber).setVisible(true);
                 }
             }catch (Exception e){
                 System.out.println(e);
             }
 
         } else if (ae.getSource().equals(cancel)) {
-            
+            setVisible(false);
+            new Login().setVisible(true);
         }
     }
     public static void main(String args[]) {
