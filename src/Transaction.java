@@ -76,6 +76,9 @@ public class Transaction extends JFrame implements ActionListener {
         } else if (e.getSource() == withdraw) {
             setVisible(false);
             new Withdraw(pinNumber).setVisible(true);
+        } else if (e.getSource() == pinChange) {
+            setVisible(false);
+            new PinChange(pinNumber).setVisible(true);
         }
     }
 
